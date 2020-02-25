@@ -1,5 +1,7 @@
 package cse360assign2;
 
+import java.lang.*;
+
 /**
  *This File contains methods for creating a SimpleList 
  * which is an integer array of length 10.
@@ -41,34 +43,34 @@ public class SimpleList{
 
 	/**
 	 * add takes in an integer 'beg' and adds it to the beginning
-	 * of the list array. If it is full, the last element 'falls off'.
+	 * of the list array. If it is full, the size is increased by 50%.
 	 * @param beg
 	 */
 	public void add(int beg){
 
 		/**
-		 * this loop shifts each element to the right. i is decremented if the list
-		 * is full to allow the last element to fall off.
+		 * this if statement checks to see if the list is full. If it is,
+		 * the length is increased by 50%
+		 */
+		if(count == list.length) {
+			int[] temp = new int[(int)(list.length * 1.5)];
+			System.arraycopy(list, 0, temp, 0, list.length);
+			list = temp;	
+		}
+		/**
+		 * this loop shifts each element to the right.
 		 */
 		for(int index = count; index > 0; index--){
-			if(index == 10) {
-				index--;
-			}
 			list[index] = list[index-1];
 		}
 		list[0] = beg;
-
-		/**
-		 * count does not increment when the list is full.
-		 */
-		if(count < 10) {
-			count++;
-		}
+		count++;
 	}
 
 	/**
 	 * remove takes in an integer, searches to see if it is on the list, and removes it
-	 * if it is. Each element after is shifted down prevent gaps in list.
+	 * if it is. Each element after is shifted down prevent gaps in list. If the list is 25% empty,
+	 * the size list is decreased.
 	 * 
 	 * @param rem
 	 */
@@ -84,6 +86,11 @@ public class SimpleList{
 			}
 			list[count - 1] = 0;
 			count--;
+		}
+		if(count < list.length*.75) {
+			int[] temp = new int[list.length - 1];
+			System.arraycopy(list, 0, temp, 0, list.length-1);
+			list = temp;
 		}
 	}
 
@@ -149,6 +156,48 @@ public class SimpleList{
 			}
 		}
 		return index;
+	}
+	
+	/**
+	 * append adds the element to the end of the list. If the list is full, the
+	 * size is increased by 50%.
+	 * 
+	 * @param add
+	 */
+	
+	public void append(int add) {
+		/**
+		 * this if statement checks to see if the list is full. If it is,
+		 * the length is increased by 50%
+		 */
+		if(count == list.length) {
+			int[] temp = new int[(int)(list.length * 1.5)];
+			System.arraycopy(list, 0, temp, 0, list.length);
+			list = temp;	
+		}
+		list[count] = add;
+		count++;
+	}
+	
+	/**
+	 * first returns the first element in the list
+	 * 
+	 * @return first
+	 */
+	
+	public int first() {
+		int first = list[0];
+		return first;
+	}
+	
+	/**
+	 * size returns the size of the list
+	 * 
+	 * @return size
+	 */
+	public int size() {
+		int size = list.length;
+		return size;
 	}
 
 }
