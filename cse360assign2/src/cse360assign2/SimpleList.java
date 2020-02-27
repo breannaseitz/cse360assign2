@@ -180,14 +180,26 @@ public class SimpleList{
 	}
 	
 	/**
-	 * first returns the first element in the list
+	 * first returns the first element in the list. If there are no elements,
+	 * -1 is returned.
 	 * 
 	 * @return first
 	 */
 	
 	public int first() {
-		int first = list[0];
+		int first = -1;
+		if(count > 0) {
+			first = list[0];
+		}
 		return first;
+	}
+	
+	public int last() {
+		int last = -1;
+		if(count > 0) {
+			last = list[count-1];
+		}
+		return last;
 	}
 	
 	/**
