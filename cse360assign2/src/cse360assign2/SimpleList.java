@@ -88,8 +88,8 @@ public class SimpleList{
 			count--;
 		}
 		if(count < list.length*.75) {
-			int[] temp = new int[list.length - 1];
-			System.arraycopy(list, 0, temp, 0, list.length-1);
+			int[] temp = new int[(int)(list.length *.75)];
+			System.arraycopy(list, 0, temp, 0, (int)(list.length*.75));
 			list = temp;
 		}
 	}
