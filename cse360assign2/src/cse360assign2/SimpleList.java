@@ -53,7 +53,7 @@ public class SimpleList{
 		 * the length is increased by 50%
 		 */
 		if(count == list.length) {
-			int[] temp = new int[(int)(list.length * 1.5)];
+			int[] temp = new int[(int)(3*list.length/2)];
 			System.arraycopy(list, 0, temp, 0, list.length);
 			list = temp;	
 		}
@@ -87,8 +87,8 @@ public class SimpleList{
 			list[count - 1] = 0;
 			count--;
 		}
-		if(count < list.length*.75) {
-			int[] temp = new int[(int)(list.length *.75)];
+		if(count < 3*list.length/4) {
+			int[] temp = new int[(int)(3*list.length/4)];
 			System.arraycopy(list, 0, temp, 0, (int)(list.length*.75));
 			list = temp;
 		}
